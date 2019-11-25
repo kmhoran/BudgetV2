@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Transactions.Common.csproj" />
+    <ProjectReference Include="..\Repositories\Transactions.Repositories.csproj" />
+    <ProjectReference Include="..\..\Utils\Date\Utils.Date.csproj" />
+    <ProjectReference Include="..\..\Core\Common\Core.Common.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>

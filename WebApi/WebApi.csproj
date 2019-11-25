@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lib\Transactions\Services\Transactions.Services.csproj" />
+    <ProjectReference Include="..\Lib\Transactions\Repositories\Transactions.Repositories.csproj" />
+    <ProjectReference Include="..\Lib\Utils\Date\Utils.Date.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.9.3" />
+  </ItemGroup>
+
+</Project>

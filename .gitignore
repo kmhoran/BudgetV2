@@ -1,0 +1,13 @@
+# builds
+bin/
+obj/
+
+# development secrets
+devSecrets/
+
+# vscode
+.vscode
+Properties/
+
+# Docker
+docker-compose.yml
