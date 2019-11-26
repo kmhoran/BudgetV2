@@ -35,8 +35,6 @@ namespace Transactions.Repositories
             return await base.UpdateAsync(x => x.TransactionId == id, toSave.TrackChanges(UserId));
         }
 
-        // protected override async Task<T> CreateAsync(T toSave)
-        //     => await base.CreateAsync(toSave.TrackChanges(UserId, true));
         protected override async Task<T> UpdateAsync(Expression<Func<T, bool>> expression, T toUpdate)
             => await base.UpdateAsync(expression, toUpdate.TrackChanges(UserId));
 
@@ -52,7 +50,6 @@ namespace Transactions.Repositories
         public async Task<Year<T>> GetYearAsync(int year)
         {
             var transactions = await MultipleAsync(x => x.Year == year);
-            // var transactions = await MultipleAsync(x => x.Amount > 80);
             var months = transactions.GroupBy(x => x.MonthId).Select(g =>
             {
                 if (g.Count() == 0) return null;
@@ -95,6 +92,11 @@ namespace Transactions.Repositories
             });
 
             return new Year<INamedBalance>(year, months);
+        }
+
+        public async Task DeleteAsync(string id)
+        {
+            await base.DeleteAsync(x => x.TransactionId == id);
         }
     }
 

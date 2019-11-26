@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Core.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,8 @@ namespace WebApi
         {
             services.AddControllers();
 
+            services.AddAutoMapper(typeof(Startup));
+            
             services.Configure<BudgetDbSettings>(
                 Configuration.GetSection(nameof(BudgetDbSettings)));
 

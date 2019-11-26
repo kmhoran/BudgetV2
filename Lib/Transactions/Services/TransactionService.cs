@@ -33,5 +33,8 @@ namespace Transactions.Services
 
         public async Task<Year<INamedBalance>> GetYearCategoriesAsync(int? yearId = null)
             => await _repo.GetYearCategoriesAsync(yearId ?? DateTime.Now.Year);
+
+        public async Task DeleteAsync(string id)
+            => await _repo.DeleteAsync(id);
     }
 }

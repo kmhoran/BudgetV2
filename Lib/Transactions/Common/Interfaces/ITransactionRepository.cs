@@ -11,10 +11,11 @@ namespace Transactions.Common.Interfaces
     {
         Task<T> GetAsync(string id);
         Task<T> SaveAsync(T toSave);
-        Task<List<T>> GetMultipleAsync(Expression<Func<T, bool>> expression) ;
+        Task<List<T>> GetMultipleAsync(Expression<Func<T, bool>> expression);
         Task<Month<T>> GetMonthAsync(int monthId);
         Task<Year<T>> GetYearAsync(int year);
         Task<Month<INamedBalance>> GetMonthCategoriesAsync(int monthId);
         Task<Year<INamedBalance>> GetYearCategoriesAsync(int year);
+        Task DeleteAsync(string id);
     }
 }

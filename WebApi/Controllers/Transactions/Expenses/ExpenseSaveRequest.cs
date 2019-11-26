@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.Controllers.Transactions
 {
@@ -6,10 +7,11 @@ namespace WebApi.Controllers.Transactions
     {
 
         public string TransactionId { get; set; }
+        public DateTime TransactionDateUTC { get; set; }
         public double Amount { get; set; }
         public string Category { get; set; }
-        public DateTime CreatedUTC { get; set; }
         public string Description { get; set; }
         public string ForUserId { get; set; }
+        public string ByUserId { get; set; }
     }
 }

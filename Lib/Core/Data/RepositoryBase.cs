@@ -31,9 +31,9 @@ namespace Transactions.Repositories
              return await result.ToListAsync();
         }
 
-        protected async Task DeleteAsync(Expression<Func<T, bool>> expression) => await _db.DeleteOneAsync(expression);
+        protected virtual async Task DeleteAsync(Expression<Func<T, bool>> expression) => await _db.DeleteOneAsync(expression);
 
-        protected async Task DeleteManyAsync(Expression<Func<T, bool>> expression) => await _db.DeleteManyAsync(expression);
+        protected virtual async Task DeleteManyAsync(Expression<Func<T, bool>> expression) => await _db.DeleteManyAsync(expression);
 
         protected virtual async Task<T> CreateAsync(T toSave)
         {
