@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Data.Models;
+using GraphQL.Server;
+using GraphQL.Server.Ui.GraphiQL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,6 +20,8 @@ using Transactions.Common.Interfaces;
 using Transactions.Common.Models;
 using Transactions.Repositories;
 using Transactions.Services;
+using WebApi.GraphQL;
+using WebApi.GraphQL.Transactions;
 
 namespace WebApi
 {
@@ -32,10 +37,15 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<KestrelServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+
             services.AddControllers();
 
             services.AddAutoMapper(typeof(Startup));
-            
+
             services.Configure<BudgetDbSettings>(
                 Configuration.GetSection(nameof(BudgetDbSettings)));
 
@@ -44,6 +54,17 @@ namespace WebApi
 
             services.AddTransient<IExpenseService, ExpenseService>()
             .AddTransient<IExpenseRepository, ExpenseRepository>();
+            services.AddTransient<ITransactionData, TransactionData>();
+
+            services.AddSingleton<BudgetSchema>();
+
+            services.AddGraphQL(options =>
+            {
+                options.EnableMetrics = true;
+                options.ExposeExceptions = true;
+            })
+            .AddWebSockets()
+            .AddDataLoader();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +74,14 @@ namespace WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseWebSockets();
+            app.UseGraphQLWebSockets<BudgetSchema>("/graphql");
+            app.UseGraphQL<BudgetSchema>("/graphql");
+
+            app.UseGraphiQLServer(new GraphiQLOptions
+            {
+                GraphQLEndPoint = "/graphql"
+            });
 
             // app.UseHttpsRedirection();
 
