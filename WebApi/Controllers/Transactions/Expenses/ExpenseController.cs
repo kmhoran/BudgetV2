@@ -34,7 +34,7 @@ namespace WebApi.Controllers.Transactions
         [HttpGet("month")]
         public async Task<Month<Expense>> GetExpense([FromQuery]int? month)
         {
-            return await _expenseService.GetMonthPerformanceAsync(month);
+            return await _expenseService.GetMonthAsync(month);
         }
 
         [HttpPost]

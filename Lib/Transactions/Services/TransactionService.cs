@@ -22,7 +22,7 @@ namespace Transactions.Services
         public async Task<List<T>> GetMultipleAsync(Expression<Func<T, bool>> expression)
             => await _repo.GetMultipleAsync(expression);
 
-        public async Task<Month<T>> GetMonthPerformanceAsync(int? monthId = null)
+        public async Task<Month<T>> GetMonthAsync(int? monthId = null)
             => await _repo.GetMonthAsync(monthId ?? MonthUtil.CurretMonthId);
 
         public async Task<Year<T>> GetYearPerformanceAsync(int? yearId = null)

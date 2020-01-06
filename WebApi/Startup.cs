@@ -53,8 +53,13 @@ namespace WebApi
                 sp.GetRequiredService<IOptions<BudgetDbSettings>>().Value);
 
             services.AddTransient<IExpenseService, ExpenseService>()
-            .AddTransient<IExpenseRepository, ExpenseRepository>();
-            services.AddTransient<ITransactionData, TransactionData>();
+            .AddTransient<IExpenseRepository, ExpenseRepository>()
+            .AddTransient<IIncomeService, IncomeService>()
+            .AddTransient<IIncomeRepository, IncomeRepository>()
+            .AddTransient<IPerformanceService, PerformanceService>()
+            .AddTransient<IBalanceAdjustmentService, BalanceAdjustmentService>()
+            .AddTransient<IBalanceAdjustmentRepository, BalanceAdjustmentRepository>()
+            .AddTransient<ITransactionData, TransactionData>();
 
             services.AddSingleton<BudgetSchema>();
 

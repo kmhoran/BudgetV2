@@ -10,7 +10,7 @@ namespace Transactions.Common.Interfaces
     where T : ITransaction
     {
         Task<List<T>> GetMultipleAsync(Expression<Func<T, bool>> expression);
-        Task<Month<T>> GetMonthPerformanceAsync(int? monthId = null);
+        Task<Month<T>> GetMonthAsync(int? monthId = null);
         Task<Year<T>> GetYearPerformanceAsync(int? yearId = null);
         Task<Month<INamedBalance>> GetMonthCategoriesAsync(int? monthId = null);
         Task<Year<INamedBalance>> GetYearCategoriesAsync(int? yearId = null);

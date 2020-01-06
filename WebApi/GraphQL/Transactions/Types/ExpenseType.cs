@@ -2,7 +2,7 @@ using System;
 using GraphQL.Types;
 using Transactions.Common.Models;
 
-namespace WebApi.GraphQL.Transactions
+namespace WebApi.GraphQL.Transactions.Types
 {
     public class ExpenseType: ObjectGraphType<Expense>
     {

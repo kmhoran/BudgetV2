@@ -1,29 +1,32 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Transactions.Common.Interfaces;
 using Transactions.Common.Models;
+using Utils.Date;
 
 namespace Transactions.Services
 {
-    public class IncomeService : TransactionService<Income>, IIncomeService
+    public class BalanceAdjustmentService : TransactionService<BalanceAdjustment>, IBalanceAdjustmentService
     {
-        private IIncomeRepository incomeRepo;
+        private IBalanceAdjustmentRepository balanceAdjustmentRepo;
 
-        public IncomeService(IIncomeRepository repo)
+        public BalanceAdjustmentService(IBalanceAdjustmentRepository repo)
         : base(repo)
         {
-            incomeRepo = repo;
+            balanceAdjustmentRepo = repo;
         }
 
-        public async Task<Income> GetASync(string id)
-            => await incomeRepo.GetAsync(id);
+        public async Task<BalanceAdjustment> GetASync(string id)
+          => await balanceAdjustmentRepo.GetAsync(id);
 
-        public async Task<Income> SaveAsync(Income toSave)
+        public async Task<BalanceAdjustment> SaveAsync(BalanceAdjustment toSave)
         {
             // allow for partial update
             if (!string.IsNullOrEmpty(toSave.TransactionId))
             {
-                var existing = await incomeRepo.GetAsync(toSave.TransactionId);
+                var existing = await balanceAdjustmentRepo.GetAsync(toSave.TransactionId);
                 if (existing != null)
                 {
                     toSave.Amount = toSave.Amount == default(double)
@@ -38,25 +41,21 @@ namespace Transactions.Services
                     toSave.ForUserId = string.IsNullOrEmpty(toSave.ForUserId)
                         ? existing.ForUserId
                         : toSave.ForUserId;
-                    toSave.TransactionDateUTC = toSave.TransactionDateUTC == default(DateTime)
-                        ? existing.TransactionDateUTC
-                        : toSave.TransactionDateUTC;
                     toSave.CreatedUTC = toSave.CreatedUTC == default(DateTime)
                         ? existing.CreatedUTC
                         : toSave.CreatedUTC;
                 }
             }
-            if (!ValidateIncome(toSave)) throw new ArgumentException("Invalid Income model");
+            if (!ValidateBalanceAdjustment(toSave)) throw new ArgumentException("Invalid Income model");
 
-            return await incomeRepo.SaveAsync(toSave);
+            return await balanceAdjustmentRepo.SaveAsync(toSave);
         }
 
-        public bool ValidateIncome(Income model)
+        public bool ValidateBalanceAdjustment(BalanceAdjustment model)
         {
             if (string.IsNullOrEmpty(model.Category)) return false;
             if (string.IsNullOrEmpty(model.Description)) return false;
             if (string.IsNullOrEmpty(model.ForUserId)) return false;
-            if (model.TransactionDateUTC == default(DateTime)) return false;
             return true;
         }
     }

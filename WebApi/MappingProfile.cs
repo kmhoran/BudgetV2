@@ -13,6 +13,10 @@ namespace WebApi
             .ForMember(d => d.LastChangedBy, o => o.Ignore())
             .ForMember(d => d.LastModifiedUTC, o => o.Ignore())
             .ForMember(d => d.CreatedUTC, o => o.Ignore());
+            CreateMap<IncomeSaveRequest, Income>()
+             .ForMember(d => d.LastChangedBy, o => o.Ignore())
+             .ForMember(d => d.LastModifiedUTC, o => o.Ignore())
+             .ForMember(d => d.CreatedUTC, o => o.Ignore());
         }
     }
 }

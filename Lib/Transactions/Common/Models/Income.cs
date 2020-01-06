@@ -6,8 +6,5 @@ namespace Transactions.Common.Models
 {
     public class Income : TransactionBase
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string IncomeId { get; set; }
     }
 }

@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Transactions.Common.Interfaces;
 using Transactions.Common.Models;
-using Utils.Date;
 
 namespace Transactions.Services
 {

@@ -8,10 +8,9 @@ namespace Transactions.Common.Models
 {
     public class BalanceAdjustment : ITransaction
     {
-        // [BsonId]
-        // [BsonRepresentation(BsonType.ObjectId)]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string TransactionId { get; set; }
-
         public double Amount { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
@@ -23,7 +22,8 @@ namespace Transactions.Common.Models
         [BsonElement]
         public int MonthId
         {
-            get{
+            get
+            {
                 return MonthUtil.GetMonthId(CreatedUTC);
             }
         }
@@ -31,7 +31,8 @@ namespace Transactions.Common.Models
         [BsonElement]
         public int Year
         {
-            get{
+            get
+            {
                 return CreatedUTC.Year;
             }
         }

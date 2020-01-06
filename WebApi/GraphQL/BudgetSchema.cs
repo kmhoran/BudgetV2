@@ -10,6 +10,7 @@ namespace WebApi.GraphQL
         public BudgetSchema(ITransactionData data)
         {
             Query = new BudgetQuery(data);
+            Mutation = new BudgetMutation(data);
         }
     }
 }
