@@ -23,12 +23,12 @@ namespace Transactions.Repositories
         public async Task<T> GetAsync(string id)
             => await SingleAsync(x => x.TransactionId == id);
 
-        public async Task<List<T>> GetMultipleAsync(Expression<Func<T, bool>> expression) 
+        public async Task<List<T>> GetMultipleAsync(Expression<Func<T, bool>> expression)
             => await MultipleAsync(expression);
 
         public async Task<T> SaveAsync(T toSave)
         {
-            if (string.IsNullOrEmpty(toSave.TransactionId)) 
+            if (string.IsNullOrEmpty(toSave.TransactionId))
                 return await base.CreateAsync(toSave.TrackChanges(UserId, true));
 
             var id = toSave.TransactionId;
@@ -57,6 +57,34 @@ namespace Transactions.Repositories
             }).Where(x => x != null).ToList();
 
             return new Year<T>(year, months);
+        }
+
+        public async Task<(List<T> records, int count)> FilterAsync(InputRange<long?> dateRange, MinorFilter filter)
+        {
+            var startTicks = dateRange?.Start;
+            var endTicks = dateRange?.End;
+            var categories = filter?.Categories ?? new List<string>();
+            var textSearch = filter?.TextSearch ?? string.Empty;
+            var minAmount = filter?.Amount?.Start;
+            var maxAmount = filter?.Amount?.End;
+
+            var transactions = await MultipleAsync(x =>
+              (startTicks == null || x.Ticks >= startTicks)
+              && (endTicks == null || x.Ticks <= endTicks)
+              && (categories.Count() == 0 || categories.Contains(x.Category))
+              && (string.IsNullOrEmpty(textSearch) || x.Description.ToLower().StartsWith(textSearch.ToLower()))
+              && (minAmount == null || x.Amount >= minAmount)
+              && (maxAmount == null || x.Amount <= maxAmount));
+
+            var total = transactions.Count;
+
+            var skip = filter?.Skip ?? 0;
+            var take = filter?.Take ?? total;
+
+            var page = transactions.OrderByDescending(x => x.Ticks)
+            .Skip(skip).Take(take).ToList();
+
+            return (records: page, count: total);
         }
 
         public async Task<Month<INamedBalance>> GetMonthCategoriesAsync(int monthId)
@@ -93,6 +121,7 @@ namespace Transactions.Repositories
 
             return new Year<INamedBalance>(year, months);
         }
+
 
         public async Task DeleteAsync(string id)
         {

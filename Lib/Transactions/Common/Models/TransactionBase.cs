@@ -34,5 +34,14 @@ namespace Transactions.Common.Models
                 return TransactionDateUTC.Year;
             }
         }
+
+        [BsonElement]
+        public long Ticks
+        {
+            get
+            {
+                return TransactionDateUTC.Ticks;
+            }
+        }
     }
 }

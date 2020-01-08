@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Transactions.Common.Models;
+using WebApi.GraphQL.Transactions.Models;
 
 namespace WebApi.GraphQL.Transactions
 {
@@ -13,6 +14,7 @@ namespace WebApi.GraphQL.Transactions
         Task<Year<Income>> GetYearIncome(int year);
         Task<PerformanceMonth> GetMonthPerformance(int? monthId);
         Task<PerformanceYear> GetYearPerformance(int? year);
+        Task<TransactionResponse> GetTransactions(TransactionFilter filter);
         
     }
 }

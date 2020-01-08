@@ -10,7 +10,9 @@ namespace Transactions.Common.Interfaces
     public interface ITransaction : IAccountable, IChangeTrackable, ITaggable
     {
         string TransactionId { get; set; }
+        string Description { get; set;}
         int MonthId { get; }
         int Year { get; }
+        long Ticks { get; }
     }
 }

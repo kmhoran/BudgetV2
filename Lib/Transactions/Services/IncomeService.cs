@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Transactions.Common.Interfaces;
 using Transactions.Common.Models;
@@ -17,6 +18,9 @@ namespace Transactions.Services
 
         public async Task<Income> GetASync(string id)
             => await incomeRepo.GetAsync(id);
+
+        public async Task<(List<Income> records, int count)>  FilterAsync(TransactionFilter filter)
+            => await FilterAsync(filter?.DateRange, filter?.Income);
 
         public async Task<Income> SaveAsync(Income toSave)
         {

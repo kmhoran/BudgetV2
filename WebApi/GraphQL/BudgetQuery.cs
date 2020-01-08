@@ -1,6 +1,7 @@
 using System;
 using GraphQL.Types;
 using Transactions.Common.Interfaces;
+using Transactions.Common.Models;
 using WebApi.GraphQL.Transactions;
 using WebApi.GraphQL.Transactions.Types;
 
@@ -30,6 +31,7 @@ namespace WebApi.GraphQL
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "year" }),
                 resolve: context => data.GetYearIncome(context.GetArgument<int>("year"))
             );
+            // new
             Field<PerformanceMonthType>(
                 "monthPerformance",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "monthId" }),
@@ -39,6 +41,11 @@ namespace WebApi.GraphQL
                 "yearPerformance",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "year" }),
                 resolve: context => data.GetYearPerformance(context.GetArgument<int?>("year"))
+            );
+            Field<TransactionResponseType>(
+                "transactions",
+                arguments: new QueryArguments(new QueryArgument<TransactionFilterType> { Name = "filter" }),
+                resolve: context => data.GetTransactions(context.GetArgument<TransactionFilter>("filter"))
             );
         }
     }
