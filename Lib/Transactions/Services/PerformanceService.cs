@@ -6,7 +6,7 @@ using Utils.Date;
 
 namespace Transactions.Services
 {
-    public class PerformanceService: IPerformanceService
+    public class PerformanceService : IPerformanceService
     {
         private IExpenseService _expenseService;
         private IIncomeService _incomeService;

@@ -4,11 +4,10 @@ using Transactions.Common.Models;
 
 namespace WebApi.GraphQL.Transactions.Types
 {
-    public class ExpenseCreateType: InputObjectGraphType
+    public class ExpenseCreateType : InputObjectGraphType
     {
         public ExpenseCreateType()
         {
-            // Field(x => x.TransactionId);
             Field<NonNullGraphType<FloatGraphType>>("amount", "amount of the new transaction");
             Field<NonNullGraphType<StringGraphType>>("byUserId", "user making the");
             Field<NonNullGraphType<StringGraphType>>("category", "category of the purchase");

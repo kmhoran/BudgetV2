@@ -4,7 +4,7 @@ using Transactions.Common.Models;
 
 namespace WebApi.GraphQL.Transactions.Types
 {
-    public class BalanceAdjustmentType: ObjectGraphType<BalanceAdjustment>
+    public class BalanceAdjustmentType : ObjectGraphType<BalanceAdjustment>
     {
         public BalanceAdjustmentType()
         {

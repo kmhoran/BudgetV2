@@ -15,6 +15,6 @@ namespace WebApi.GraphQL.Transactions
         Task<PerformanceMonth> GetMonthPerformance(int? monthId);
         Task<PerformanceYear> GetYearPerformance(int? year);
         Task<TransactionResponse> GetTransactions(TransactionFilter filter);
-        
+
     }
 }

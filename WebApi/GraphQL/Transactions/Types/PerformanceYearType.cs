@@ -4,7 +4,7 @@ using Transactions.Common.Models;
 
 namespace WebApi.GraphQL.Transactions.Types
 {
-    public class PerformanceYearType: ObjectGraphType<PerformanceYear>
+    public class PerformanceYearType : ObjectGraphType<PerformanceYear>
     {
         public PerformanceYearType()
         {

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>budget-V2-d753b9d1-a278-4b29-813e-ec0eac66bec3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +15,8 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="GraphQL.Server.Transports.AspNetCore" Version="3.4.0" />
     <PackageReference Include="GraphQL.Server.Transports.WebSockets" Version="3.4.0" />
-    <PackageReference Include="GraphQL.Server.Ui.GraphiQL" Version="3.4.0" />
+   <PackageReference Include="GraphQL.Server.Ui.GraphiQL" Version="3.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.9.3" />
   </ItemGroup>
 

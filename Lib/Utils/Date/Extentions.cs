@@ -8,9 +8,5 @@ namespace Utils.Date
         {
             return date.ToString("yyyy-MM-ddTHH:mm:ssZ");
         }
-        // public static DateTime ParseISOString(this string isoString)
-        // {
-        //     return DateTime.Parse(isoString);
-        // }
     }
 }

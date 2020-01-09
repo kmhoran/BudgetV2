@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Transactions.Common.Interfaces;
 using Transactions.Common.Models;
-using Utils.Date;
 
 namespace Transactions.Services
 {
@@ -21,7 +19,7 @@ namespace Transactions.Services
         public async Task<BalanceAdjustment> GetASync(string id)
           => await balanceAdjustmentRepo.GetAsync(id);
 
-        public async Task<(List<BalanceAdjustment> records, int count)>  FilterAsync(TransactionFilter filter)
+        public async Task<(List<BalanceAdjustment> records, int count)> FilterAsync(TransactionFilter filter)
             => await FilterAsync(filter?.DateRange, filter?.Adjustment);
 
         public async Task<BalanceAdjustment> SaveAsync(BalanceAdjustment toSave)

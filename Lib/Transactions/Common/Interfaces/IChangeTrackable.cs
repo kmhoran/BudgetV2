@@ -6,6 +6,6 @@ namespace Transactions.Common.Interfaces
     {
         DateTime CreatedUTC { get; set; }
         string LastChangedBy { get; set; }
-       DateTime LastModifiedUTC { get; set; }
+        DateTime LastModifiedUTC { get; set; }
     }
 }

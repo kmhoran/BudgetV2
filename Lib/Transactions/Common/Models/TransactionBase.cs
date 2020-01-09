@@ -22,7 +22,8 @@ namespace Transactions.Common.Models
         [BsonElement]
         public int MonthId
         {
-            get{
+            get
+            {
                 return MonthUtil.GetMonthId(TransactionDateUTC);
             }
         }
@@ -30,7 +31,8 @@ namespace Transactions.Common.Models
         [BsonElement]
         public int Year
         {
-            get{
+            get
+            {
                 return TransactionDateUTC.Year;
             }
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Transactions.Common.Interfaces;
@@ -33,7 +32,8 @@ namespace Transactions.Services
         protected async Task<(List<T> records, int count)> FilterAsync(InputRange<string> dateRange, MinorFilter filter)
         {
             InputRange<long?> tickRange = new InputRange<long?>();
-            if(dateRange != null){
+            if (dateRange != null)
+            {
                 tickRange.Start = StringDateToTicks(dateRange.Start);
                 tickRange.End = StringDateToTicks(dateRange.End);
             }
@@ -42,7 +42,7 @@ namespace Transactions.Services
 
         private long? StringDateToTicks(string dateString)
         {
-            if(string.IsNullOrEmpty(dateString)) return (long?)null;
+            if (string.IsNullOrEmpty(dateString)) return (long?)null;
             DateTime date;
             var success = DateTime.TryParse(dateString, out date);
             return success ? date.Ticks : (long?)null;

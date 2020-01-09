@@ -1,6 +1,5 @@
 using System;
 using GraphQL.Types;
-using Transactions.Common.Interfaces;
 using Transactions.Common.Models;
 using WebApi.GraphQL.Transactions;
 using WebApi.GraphQL.Transactions.Types;

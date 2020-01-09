@@ -15,7 +15,7 @@ namespace Utils.Date
         }
 
         public static int GetMonthId(int year, int month)
-            => (year *100) + month;
+            => (year * 100) + month;
 
         public static int GetMonthId(DateTime date) => GetMonthId(date.Year, date.Month);
 

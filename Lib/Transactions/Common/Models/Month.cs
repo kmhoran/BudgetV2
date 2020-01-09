@@ -6,7 +6,7 @@ using Transactions.Common.Interfaces;
 
 namespace Transactions.Common.Models
 {
-    public class Month<T>: IMonth<T>
+    public class Month<T> : IMonth<T>
     where T : IAccountable
     {
         public Month(int monthId, IEnumerable<T> values)
@@ -14,8 +14,8 @@ namespace Transactions.Common.Models
             MonthId = monthId;
             Values = values;
         }
-        public int MonthId {get; set;}
-        public IEnumerable<T> Values {get; set;}
+        public int MonthId { get; set; }
+        public IEnumerable<T> Values { get; set; }
 
         [JsonIgnore]
         public double TotalAmount

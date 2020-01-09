@@ -4,7 +4,7 @@ using Transactions.Common.Models;
 
 namespace WebApi.GraphQL.Transactions.Types
 {
-    public class ExpenseType: ObjectGraphType<Expense>
+    public class ExpenseType : ObjectGraphType<Expense>
     {
         public ExpenseType()
         {

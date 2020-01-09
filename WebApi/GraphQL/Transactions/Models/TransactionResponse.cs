@@ -8,7 +8,7 @@ namespace WebApi.GraphQL.Transactions.Models
     public class TransactionResponse
     {
         public TransactionCollection<Expense> Expense { get; set; }
-        public TransactionCollection<Income> Income {get; set;}
+        public TransactionCollection<Income> Income { get; set; }
         public TransactionCollection<BalanceAdjustment> Adjustment { get; set; }
     }
 

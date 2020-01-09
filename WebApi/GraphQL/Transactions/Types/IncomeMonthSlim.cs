@@ -5,7 +5,7 @@ using Transactions.Common.Models;
 
 namespace WebApi.GraphQL.Transactions.Types
 {
-    public class IncomeMonthSlimType: ObjectGraphType<IMonth<Income>>
+    public class IncomeMonthSlimType : ObjectGraphType<IMonth<Income>>
     {
         public IncomeMonthSlimType()
         {

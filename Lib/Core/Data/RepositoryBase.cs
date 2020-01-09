@@ -26,9 +26,9 @@ namespace Transactions.Repositories
 
         protected async Task<List<T>> MultipleAsync(Expression<Func<T, bool>> expression)
         {
-             var result = _db.Find(expression);
-             
-             return await result.ToListAsync();
+            var result = _db.Find(expression);
+
+            return await result.ToListAsync();
         }
 
         protected virtual async Task DeleteAsync(Expression<Func<T, bool>> expression) => await _db.DeleteOneAsync(expression);

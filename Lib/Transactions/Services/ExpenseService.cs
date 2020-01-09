@@ -19,7 +19,7 @@ namespace Transactions.Services
         public async Task<Expense> GetASync(string id)
             => await expenseRepo.GetAsync(id);
 
-        public async Task<(List<Expense> records, int count)>  FilterAsync(TransactionFilter filter)
+        public async Task<(List<Expense> records, int count)> FilterAsync(TransactionFilter filter)
             => await FilterAsync(filter?.DateRange, filter?.Expense);
 
         public async Task<Expense> SaveAsync(Expense toSave)

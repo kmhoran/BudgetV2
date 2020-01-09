@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -40,16 +38,16 @@ namespace WebApi.Controllers.Transactions
         [HttpPost]
         public async Task<Expense> SaveExpense([FromBody] ExpenseSaveRequest model)
         {
-           var toSave = _mapper.Map<Expense>(model);
-           return await _expenseService.SaveAsync(toSave);
+            var toSave = _mapper.Map<Expense>(model);
+            return await _expenseService.SaveAsync(toSave);
         }
 
         [HttpDelete("{id}")]
         public async Task<bool> DeleteExpense([FromRoute] string id)
         {
-            if(string.IsNullOrEmpty(id)) return false;
+            if (string.IsNullOrEmpty(id)) return false;
             await _expenseService.DeleteAsync(id);
             return true;
-        } 
+        }
     }
 }
