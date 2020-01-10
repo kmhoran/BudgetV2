@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Transactions.Common.Interfaces;
@@ -15,12 +16,14 @@ namespace WebApi.Controllers.Transactions
         private readonly IMapper _mapper;
         private readonly ILogger<ExpenseController> _logger;
         private readonly IExpenseService _expenseService;
+        private readonly IBudgetDbSettings _dbSettings;
 
-        public ExpenseController(IExpenseService expenseService, IMapper mapper, ILogger<ExpenseController> logger)
+        public ExpenseController(IExpenseService expenseService, IMapper mapper, ILogger<ExpenseController> logger, IBudgetDbSettings dbSettings)
         {
             _mapper = mapper;
             _logger = logger;
             _expenseService = expenseService;
+            _dbSettings = dbSettings;
         }
 
         [HttpGet("year")]
@@ -33,6 +36,12 @@ namespace WebApi.Controllers.Transactions
         public async Task<Month<Expense>> GetExpense([FromQuery]int? month)
         {
             return await _expenseService.GetMonthAsync(month);
+        }
+
+        [HttpGet("sanity")]
+        public IBudgetDbSettings GetSanity()
+        {
+            return _dbSettings;
         }
 
         [HttpPost]

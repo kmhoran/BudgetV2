@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Core.Data.Models;
 using MongoDB.Driver;
 
-namespace Transactions.Repositories
+namespace Core.Data
 {
     // MongoDb Repository
     public class RepositoryBase<T>

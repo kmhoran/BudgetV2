@@ -9,6 +9,7 @@
     <ProjectReference Include="..\Lib\Transactions\Services\Transactions.Services.csproj" />
     <ProjectReference Include="..\Lib\Transactions\Repositories\Transactions.Repositories.csproj" />
     <ProjectReference Include="..\Lib\Utils\Date\Utils.Date.csproj" />
+    <ProjectReference Include="..\Lib\Core\DockerConfig\Core.DockerConfig.csproj" />
   </ItemGroup>
 
   <ItemGroup>

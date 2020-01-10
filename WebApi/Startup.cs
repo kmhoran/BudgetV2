@@ -1,6 +1,7 @@
 using System;
 using AutoMapper;
 using Core.Data.Models;
+using Core.DockerConfig;
 using GraphQL.Server;
 using GraphQL.Server.Ui.GraphiQL;
 using Microsoft.AspNetCore.Builder;
@@ -68,9 +69,13 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var builder = new ConfigurationBuilder()
+              .SetBasePath(env.ContentRootPath);
+            builder.AddDockerSecrets();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                builder.AddUserSecrets<Startup>();
             }
             app.UseWebSockets();
             app.UseGraphQLWebSockets<BudgetSchema>("/graphql");
