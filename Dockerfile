@@ -1,14 +1,15 @@
-# Create the build environment image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 as build-env
-WORKDIR /app/
-# copy files to current directory
-COPY . ./
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
+WORKDIR /app
 
-# publish to /out
+COPY . ./
+RUN echo "dotnet --version"
+RUN dotnet --version
+RUN dotnet restore
+
 RUN dotnet publish WebApi/WebApi.csproj -c Release -o /app/out
-# change to published directory and set entrypoint
+
+
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
-WORKDIR /app/
-COPY --from=build-env /app/out ./
-EXPOSE 80
-ENTRYPOINT ["dotnet", "WebApi.dll"]
+WORKDIR /app
+COPY --from=build /app/out ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
