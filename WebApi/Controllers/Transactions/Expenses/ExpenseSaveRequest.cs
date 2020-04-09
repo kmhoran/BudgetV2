@@ -4,7 +4,6 @@ namespace WebApi.Controllers.Transactions
 {
     public class ExpenseSaveRequest
     {
-
         public string TransactionId { get; set; }
         public DateTime TransactionDateUTC { get; set; }
         public double Amount { get; set; }
