@@ -72,7 +72,7 @@ namespace WebApi
         {
             var builder = new ConfigurationBuilder()
               .SetBasePath(env.ContentRootPath);
-            builder.AddDockerSecrets();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
